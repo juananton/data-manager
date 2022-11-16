@@ -1,3 +1,26 @@
+body {
+	font-family: 'JetBrains Mono', monospace;
+}
+
 h1 {
-	color: red;
+	font-size: 1.5rem;
+	font-weight: normal;
+}
+
+.wrapper {
+	margin: 2rem;
+}
+
+.projects-list {
+	list-style: none;
+	padding: 0;
+}
+
+.projects-list li {
+	padding: 1rem 0;
+	border-top: 1px solid;
+}
+
+.check {
+	margin-right: 0.75rem;
 }

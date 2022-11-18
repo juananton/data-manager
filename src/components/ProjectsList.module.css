@@ -1,0 +1,13 @@
+.title {
+	font-size: 1.5rem;
+	font-weight: normal;
+}
+
+.wrapper {
+	margin: 2rem;
+}
+
+.projectsList {
+	list-style: none;
+	padding: 0;
+}

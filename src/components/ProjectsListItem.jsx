@@ -1,6 +1,8 @@
+import style from './ProjectsListItem.module.css';
+
 const ProjectsListItem = ({ project }) => (
-	<li>
-		<input className='check' type='checkbox' />
+	<li className={style.listItem}>
+		<input className={style.check} type='checkbox' />
 		{`${project.name}. ${project.type}.
 		${project.date}`}
 	</li>

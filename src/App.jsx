@@ -1,5 +1,5 @@
 import ProjectsList from './components/ProjectsList';
-import './index.css';
+import './styles/index.css';
 
 const PROJECTS = [
 	{

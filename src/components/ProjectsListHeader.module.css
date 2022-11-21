@@ -1,0 +1,24 @@
+.listHeader {
+	padding: 1rem 0;
+	display: flex;
+}
+
+.check {
+	margin-right: 0.5rem;
+}
+
+.listHeader > div {
+	margin: 0 0.5rem;
+}
+
+.name {
+	width: 50%;
+}
+
+.category {
+	width: 25%;
+}
+
+.date {
+	width: 25%;
+}

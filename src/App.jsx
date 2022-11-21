@@ -1,29 +1,39 @@
-import ProjectsList from './components/ProjectsList';
+import ProjectsManager from './components/ProjectsManager';
 import './styles/index.css';
 
 const PROJECTS = [
 	{
 		name: 'Users manager',
-		type: 'React',
-		date: '2022'
+		category: 'React',
+		date: 2022
 	},
 	{
 		name: 'Feedback manager',
-		type: 'React',
-		date: '2021'
+		category: 'React',
+		date: 2021
 	},
 	{
 		name: 'Bank accounts manager',
-		type: 'javaScript',
-		date: '2022'
+		category: 'Vanilla JS',
+		date: 2022
 	},
 	{
 		name: 'Ticket booking',
-		type: 'javaScript',
-		date: '2022'
+		category: 'Node.js',
+		date: 2020
+	},
+	{
+		name: 'Test project',
+		category: 'Vanilla JS',
+		date: 2021
+	},
+	{
+		name: 'Node project',
+		category: 'Node.js',
+		date: 2020
 	}
 ];
 
-const App = () => <ProjectsList initialProjects={PROJECTS} />;
+const App = () => <ProjectsManager initialProjects={PROJECTS} />;
 
 export default App;

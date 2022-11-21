@@ -1,8 +1,41 @@
 .listItem {
 	padding: 1rem 0;
 	border-top: 1px solid;
+	display: flex;
+}
+
+.listItem > div {
+	margin: 0 0.5rem;
 }
 
 .check {
-	margin-right: 0.75rem;
+	margin-right: 0.5rem;
+}
+
+.name {
+	width: 50%;
+}
+
+.category {
+	width: 25%;
+}
+
+.date {
+	width: 25%;
+}
+
+.react {
+	color: blue;
+}
+
+.javascript {
+	color: orange;
+}
+
+.other {
+	color: gray;
+}
+
+.node {
+	color: green;
 }

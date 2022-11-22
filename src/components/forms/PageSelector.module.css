@@ -1,0 +1,7 @@
+.pageSelector {
+	display: flex;
+	align-items: center;
+}
+.pageSelector > * {
+	margin-left: 0.5rem;
+}

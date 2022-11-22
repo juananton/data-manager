@@ -41,7 +41,7 @@ const Toolbar = ({
 					</Select>
 				</div>
 			</div>
-			<Button className={style.btnPrimary}>New Project</Button>
+			<Button use='primary'>New Project</Button>
 		</div>
 	);
 };

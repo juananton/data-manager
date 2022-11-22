@@ -35,6 +35,18 @@ export const PROJECTS = [
 		id: 5,
 		name: 'Node project',
 		category: CATEGORIES.NODE,
+		date: 2022
+	},
+	{
+		id: 6,
+		name: 'JavaScript project',
+		category: CATEGORIES.JS,
+		date: 2020
+	},
+	{
+		id: 7,
+		name: 'Other React project',
+		category: CATEGORIES.REACT,
 		date: 2020
 	}
 ];

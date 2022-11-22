@@ -1,0 +1,18 @@
+.pagination {
+	margin-top: 2rem;
+	display: flex;
+	justify-content: space-between;
+}
+
+.itemsPerPageSelector {
+	display: flex;
+	align-items: center;
+}
+
+.itemsPerPageSelector > * {
+	margin-right: 0.5rem;
+}
+
+.pageSelector > * {
+	margin-left: 0.5rem;
+}

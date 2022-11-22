@@ -1,12 +1,17 @@
-.title {
-	font-size: 1.5rem;
-	font-weight: normal;
-}
-
 .wrapper {
-	margin: 2rem;
 	width: 800px;
 	max-width: 100%;
 	margin: 0 auto;
-	padding: 1rem;
+	padding: 0 1rem;
+}
+
+.pageHeader {
+	margin-top: 3rem;
+	margin-bottom: 1rem;
+}
+
+.title {
+	font-size: var(--title-2);
+	font-weight: normal;
+	margin: 1.5rem 0;
 }

@@ -1,5 +1,5 @@
 .toolbar {
-	padding: 1rem 0;
+	padding: 1.5rem 0;
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
@@ -8,7 +8,21 @@
 .filters {
 	display: flex;
 	align-items: center;
-	justify-content: space-between;
-	width: 450px;
+	width: 520px;
 	max-width: 100%;
+}
+
+.formControl {
+	margin-right: 1.5rem;
+	display: flex;
+	align-items: center;
+}
+
+.formControl Select {
+	margin-left: 0.75rem;
+}
+
+.btnPrimary {
+	background-color: var(--color-black);
+	color: var(--color-white);
 }

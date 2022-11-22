@@ -1,20 +1,22 @@
+import { CATEGORIES } from '../lib/constants/categories';
 import style from './ProjectsListItem.module.css';
+import Tag from './Tag';
 
 const ProjectsListItem = ({ name, category, date }) => {
 	const CATEGORY_STYLES = {
-		React: style.react,
-		'Vanilla JS': style.javascript,
-		'Node.js': style.node,
-		Other: style.other
+		[CATEGORIES.REACT]: style.react,
+		[CATEGORIES.JS]: style.javascript,
+		[CATEGORIES.NODE]: style.node
 	};
 
-	const categoryClassName = CATEGORY_STYLES[category] || CATEGORY_STYLES.Other;
+	const categoryClassName = CATEGORY_STYLES[category];
 
 	return (
 		<div className={style.listItem}>
-			<input className={style.check} type='checkbox' />
 			<div className={`${style.name}`}>{name}</div>
-			<div className={`${style.category} ${categoryClassName}`}>{category}</div>
+			<div className={style.category}>
+				<Tag className={categoryClassName}>{category}</Tag>
+			</div>
 			<div className={style.date}>{date}</div>
 		</div>
 	);

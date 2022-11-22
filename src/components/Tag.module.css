@@ -1,0 +1,7 @@
+.tag {
+	font-size: var(--text-sm);
+	padding: 0.5rem 0.75rem;
+	border-radius: var(--radius-sm);
+	display: inline-block;
+	height: 2rem;
+}

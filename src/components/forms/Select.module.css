@@ -1,0 +1,21 @@
+.wrapper {
+	position: relative;
+}
+
+.select {
+	cursor: pointer;
+	font-size: var(--text-sm);
+	padding: 0.5rem 0.75rem;
+	padding-right: 2.5rem;
+	border-radius: var(--radius-sm);
+	appearance: none;
+	width: 100%;
+}
+
+.icon {
+	pointer-events: none;
+	position: absolute;
+	width: 1rem;
+	right: 12px;
+	top: 9px;
+}

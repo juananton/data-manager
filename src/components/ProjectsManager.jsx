@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { CATEGORIES } from '../lib/constants/categories';
 import { SORT_OPTIONS } from '../lib/constants/sortOptions';
 import {
 	filterItems,
@@ -14,7 +13,7 @@ import Toolbar from './Toolbar';
 
 const ProjectsManager = ({ initialProjects }) => {
 	// STATES
-	const [filterCriteria, setFilterCriteria] = useState(CATEGORIES.ALL);
+	const [filterCriteria, setFilterCriteria] = useState('all');
 	const [sortCriteria, setSortCriteria] = useState(SORT_OPTIONS.DATE);
 	const [page, setPage] = useState(1);
 	const [itemsPerPage, setItemsPerPage] = useState(5);
@@ -22,9 +21,15 @@ const ProjectsManager = ({ initialProjects }) => {
 	// GET PROJECTS
 	let projects = filterItems(initialProjects, filterCriteria);
 	projects = sortItems(projects, sortCriteria);
+
 	const totalPages = Math.ceil(projects.length / itemsPerPage);
 
 	projects = paginateItems(projects, page, itemsPerPage);
+
+	if (projects.length === 0) return <p>No projects</p>;
+
+	// Prevents the page is larger than the total number of pages when changing the items per page
+	page > totalPages && setPage(1);
 
 	return (
 		<>
@@ -41,7 +46,7 @@ const ProjectsManager = ({ initialProjects }) => {
 					setSortCriteria={setSortCriteria}
 				/>
 				<ProjectsListHeader />
-				<ProjectsList projects={projects} />
+				<ProjectsList projects={projects} itemsPerPage={itemsPerPage} />
 				<Pagination
 					page={page}
 					itemsPerPage={itemsPerPage}

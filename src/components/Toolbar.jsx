@@ -20,10 +20,12 @@ const Toolbar = ({
 						id='filterBy'
 						onChange={e => setFilterCriteria(e.target.value)}
 					>
-						<option value={CATEGORIES.ALL}>All</option>
-						<option value={CATEGORIES.REACT}>React</option>
-						<option value={CATEGORIES.JS}>Vanilla JS</option>
-						<option value={CATEGORIES.NODE}>Node.js</option>
+						<option value='all'>All</option>
+						{Object.values(CATEGORIES).map(cat => (
+							<option key={cat} value={cat}>
+								{cat}
+							</option>
+						))}
 					</Select>
 				</div>
 				<div className={style.formControl}>
@@ -35,7 +37,7 @@ const Toolbar = ({
 					>
 						<option value={SORT_OPTIONS.DATE}>Date</option>
 						<option value={SORT_OPTIONS.NAME}>Name</option>
-						{filterCriteria === CATEGORIES.ALL && (
+						{filterCriteria === 'all' && (
 							<option value={SORT_OPTIONS.CATEGORY}>Category</option>
 						)}
 					</Select>

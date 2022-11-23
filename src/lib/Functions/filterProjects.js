@@ -1,4 +1,3 @@
-import { CATEGORIES } from '../constants/categories';
 import { SORT_OPTIONS } from '../constants/sortOptions';
 
 export const sortItems = (items, criteria) => {
@@ -29,10 +28,9 @@ export const sortItems = (items, criteria) => {
 
 export const filterItems = (items, criteria) => {
 	let filteredItems;
-	criteria === CATEGORIES.ALL
+	criteria === 'all'
 		? (filteredItems = items)
 		: (filteredItems = items.filter(item => item.category === criteria));
-
 	return filteredItems;
 };
 

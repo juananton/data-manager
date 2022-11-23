@@ -10,9 +10,5 @@
 }
 
 .itemsPerPageSelector > * {
-	margin-right: 0.5rem;
-}
-
-.pageSelector > * {
-	margin-left: 0.5rem;
+	margin-right: 0.75rem;
 }

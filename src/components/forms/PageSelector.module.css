@@ -5,3 +5,7 @@
 .pageSelector > * {
 	margin-left: 0.5rem;
 }
+
+.pageSelector > p {
+	margin-right: 0.75rem;
+}

@@ -6,8 +6,8 @@ body {
 :root {
 	/* Colors */
 	--color-black: #1c1c1c;
-	--color-gray: #9b9b9b;
-	--color-light-gray: #e9e9e9;
+	--color-gray: #a5a5a5;
+	--color-light-gray: #ededed;
 	--color-white: #ffffff;
 	--color-light-blue: rgb(226, 236, 254);
 	--color-light-orange: rgb(255, 239, 212);

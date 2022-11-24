@@ -29,7 +29,7 @@ const Toolbar = ({
 					</Select>
 				</div>
 				<div className={style.formControl}>
-					<label htmlFor='sortBy'>Order by: </label>
+					<label htmlFor='sortBy'>Sort by: </label>
 					<Select
 						value={sortCriteria}
 						id='sortBy'

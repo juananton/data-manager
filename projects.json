@@ -3,50 +3,50 @@
 		{
 			"id": "c3ce080a-88ee-4b1c-b88e-e7070b1365e6",
 			"name": "Users manager",
-			"category": "React",
-			"date": 2022
-		},
-		{
-			"id": "1a751902-cad9-420b-bffa-a664b2616bf7",
-			"name": "Feedback manager",
-			"category": "React",
-			"date": 2021
-		},
-		{
-			"id": "d4150eee-37d8-4a18-8e9d-fd9837b65fbe",
-			"name": "Bank accounts manager",
 			"category": "Vanilla JS",
-			"date": 2022
-		},
-		{
-			"id": "dadaeca9-6ecd-4c2c-bbe8-4219cfdb97c2",
-			"name": "Ticket booking",
-			"category": "Node.js",
 			"date": 2022
 		},
 		{
 			"id": "43f4fc35-387e-4cbe-a5b6-86c12acd74cb",
 			"name": "Test project",
+			"category": "React",
+			"date": 2022
+		},
+		{
+			"id": "04aa6dff-b74b-4abf-bcce-1668581cb3e0",
+			"name": "Other JavasCript project",
 			"category": "Vanilla JS",
 			"date": 2022
 		},
 		{
-			"id": "50103224-4cb0-4c18-9ba7-69e588056cdf",
-			"name": "Node project",
+			"id": "d4150eee-37d8-4a18-8e9d-fd9837b65fbe",
+			"name": "Bank accounts manager",
+			"category": "React",
+			"date": 2021
+		},
+		{
+			"id": "dadaeca9-6ecd-4c2c-bbe8-4219cfdb97c2",
+			"name": "Ticket booking",
 			"category": "Node.js",
-			"date": 2022
+			"date": 2021
 		},
 		{
 			"id": "f7050dbb-14de-47bc-9655-868dfbf0d8b1",
 			"name": "JavaScript project",
 			"category": "Vanilla JS",
-			"date": 2022
+			"date": 2021
 		},
 		{
-			"id": "04aa6dff-b74b-4abf-bcce-1668581cb3e0",
-			"name": "Other React project",
+			"id": "1a751902-cad9-420b-bffa-a664b2616bf7",
+			"name": "Feedback manager",
 			"category": "React",
-			"date": 2022
+			"date": 2020
+		},
+		{
+			"id": "50103224-4cb0-4c18-9ba7-69e588056cdf",
+			"name": "Node project",
+			"category": "Node.js",
+			"date": 2020
 		}
 	]
 }

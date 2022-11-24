@@ -10,13 +10,13 @@ export const sortData = (items, criteria) => {
 				return 0;
 			});
 		case SORT_OPTIONS.NAME:
-			return items.sort((a, b) => {
+			return [...items].sort((a, b) => {
 				if (a.name > b.name) return 1;
 				if (a.name < b.name) return -1;
 				return 0;
 			});
 		case SORT_OPTIONS.CATEGORY:
-			return items.sort((a, b) => {
+			return [...items].sort((a, b) => {
 				if (a.category < b.category) return 1;
 				if (a.category > b.category) return -1;
 				return 0;

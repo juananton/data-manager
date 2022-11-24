@@ -21,9 +21,9 @@ const Toolbar = ({
 						onChange={e => setFilterCriteria(e.target.value)}
 					>
 						<option value='all'>All</option>
-						{Object.values(CATEGORIES).map(cat => (
-							<option key={cat} value={cat}>
-								{cat}
+						{Object.values(CATEGORIES).map(category => (
+							<option key={category} value={category}>
+								{category}
 							</option>
 						))}
 					</Select>

@@ -1,8 +1,8 @@
 import { CATEGORIES } from '../lib/constants/categories';
-import style from './ProjectsListItem.module.css';
+import style from './ListItem.module.css';
 import Tag from './Tag';
 
-const ProjectsListItem = ({ name, category, date }) => {
+const ListItem = ({ name, category, date }) => {
 	const CATEGORY_STYLES = {
 		[CATEGORIES.REACT]: style.react,
 		[CATEGORIES.JS]: style.javascript,
@@ -22,4 +22,4 @@ const ProjectsListItem = ({ name, category, date }) => {
 	);
 };
 
-export default ProjectsListItem;
+export default ListItem;

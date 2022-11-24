@@ -1,6 +1,5 @@
-import ProjectsManager from './components/ProjectsManager';
-import { PROJECTS } from './lib/constants/mockProjects';
+import DataManager from './components/DataManager';
 import './styles/index.css';
 
-const App = () => <ProjectsManager initialProjects={PROJECTS} />;
+const App = () => <DataManager />;
 export default App;

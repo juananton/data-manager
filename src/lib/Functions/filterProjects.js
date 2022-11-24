@@ -1,10 +1,10 @@
 import { SORT_OPTIONS } from '../constants/sortOptions';
 
-export const sortItems = (items, criteria) => {
+export const sortData = (items, criteria) => {
 	switch (criteria) {
 		case SORT_OPTIONS.DATE:
 			return [...items].sort((a, b) => {
-				// [..projetcs] Create a copy of projects because the sort() method modifies the original array.
+				// [..items] Create a copy of projects because the sort() method modifies the original array.
 				if (a.date < b.date) return 1;
 				if (a.date > b.date) return -1;
 				return 0;
@@ -26,7 +26,7 @@ export const sortItems = (items, criteria) => {
 	}
 };
 
-export const filterItems = (items, criteria) => {
+export const filterData = (items, criteria) => {
 	let filteredItems;
 	criteria === 'all'
 		? (filteredItems = items)
@@ -34,7 +34,7 @@ export const filterItems = (items, criteria) => {
 	return filteredItems;
 };
 
-export const paginateItems = (items, page, itemsPerPage) => {
+export const paginateData = (items, page, itemsPerPage) => {
 	const startIndex = (page - 1) * itemsPerPage;
 	const endIndex = startIndex + itemsPerPage;
 

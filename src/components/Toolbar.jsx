@@ -43,7 +43,7 @@ const Toolbar = ({
 					</Select>
 				</div>
 			</div>
-			<Button use='primary'>New Project</Button>
+			<Button use='primary'>New Item</Button>
 		</div>
 	);
 };

@@ -1,6 +1,6 @@
-import style from './ProjectsListHeader.module.css';
+import style from './ItemsListHeader.module.css';
 
-const ProjectsListHeader = () => {
+const ItemsListHeader = () => {
 	return (
 		<div className={style.listHeader}>
 			<div className={style.name}>Name</div>
@@ -9,4 +9,4 @@ const ProjectsListHeader = () => {
 		</div>
 	);
 };
-export default ProjectsListHeader;
+export default ItemsListHeader;

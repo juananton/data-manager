@@ -18,25 +18,41 @@ const DataManager = () => {
 	const [page, setPage] = useState(1);
 	const [itemsPerPage, setItemsPerPage] = useState(5);
 	const [rawData, setRawData] = useState([]);
+	const [error, setError] = useState(false);
+	const [loading, setLoading] = useState(true);
 
 	// GET RAW DATA FROM THE API
-	const fetchData = async (setRawData, signal) => {
-		const res = await fetch('http://localhost:4000/projects', { signal });
-		const apiData = await res.json();
-		setRawData(apiData);
+	const fetchData = async (setRawData, setError, setLoading, signal) => {
+		try {
+			const res = await fetch('http://localhost:4000/projects', { signal });
+			if (res.ok) {
+				const data = await res.json();
+				setRawData(data);
+			} else {
+				setError(true);
+			}
+		} catch (err) {
+			setError(true);
+		} finally {
+			setLoading(false);
+		}
 	};
 
 	useEffect(() => {
 		const controller = new AbortController();
-		fetchData(setRawData, controller.signal);
+		fetchData(setRawData, setError, setLoading, controller.signal);
 		return () => controller.abort();
 	}, []);
 
-	// DISPLAY DATA
-	let data = filterData(rawData, filterCriteria);
-	data = sortData(data, sortCriteria);
-	const { paginatedData, totalPages } = paginateData(data, page, itemsPerPage);
-	data = paginatedData;
+	// ITEMS TO DISPLAY
+	let itemsToDisplay = filterData(rawData, filterCriteria);
+	itemsToDisplay = sortData(itemsToDisplay, sortCriteria);
+	const { paginatedData, totalPages } = paginateData(
+		itemsToDisplay,
+		page,
+		itemsPerPage
+	);
+	itemsToDisplay = paginatedData;
 
 	// Prevents that the page value could be larger than the total number of pages when changing the items per page.
 	useEffect(() => {
@@ -58,7 +74,12 @@ const DataManager = () => {
 					setSortCriteria={setSortCriteria}
 				/>
 				<ListHeader />
-				<List data={data} itemsPerPage={itemsPerPage} />
+				<List
+					itemsToDisplay={itemsToDisplay}
+					itemsPerPage={itemsPerPage}
+					error={error}
+					loading={loading}
+				/>
 				<Pagination
 					page={page}
 					itemsPerPage={itemsPerPage}

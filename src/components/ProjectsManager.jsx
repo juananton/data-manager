@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { SORT_OPTIONS } from '../lib/constants/sortOptions';
 import {
 	filterItems,
@@ -26,10 +26,11 @@ const ProjectsManager = ({ initialProjects }) => {
 
 	projects = paginateItems(projects, page, itemsPerPage);
 
-	if (projects.length === 0) return <p>No projects</p>;
-
-	// Prevents the page is larger than the total number of pages when changing the items per page
-	page > totalPages && setPage(1);
+	// SIDE EFFECTS
+	// Prevents that the page value could be larger than the total number of pages when changing the items per page and goes always to page 1 when there are no items to display.
+	useEffect(() => {
+		if (page > totalPages) return setPage(1);
+	}, [page, totalPages]);
 
 	return (
 		<>

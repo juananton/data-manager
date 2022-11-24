@@ -37,6 +37,8 @@ export const filterData = (items, criteria) => {
 export const paginateData = (items, page, itemsPerPage) => {
 	const startIndex = (page - 1) * itemsPerPage;
 	const endIndex = startIndex + itemsPerPage;
+	const totalPages = Math.ceil(items.length / itemsPerPage);
+	const paginatedData = items.slice(startIndex, endIndex);
 
-	return items.slice(startIndex, endIndex);
+	return { paginatedData, totalPages };
 };

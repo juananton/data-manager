@@ -4,10 +4,10 @@ import {
 	filterData,
 	paginateData,
 	sortData
-} from '../lib/Functions/filterData';
+} from '../lib/Functions/manageData';
 import style from './DataManager.module.css';
-import ProjectsListHeader from './ItemsListHeader';
 import List from './List';
+import ListHeader from './ListHeader';
 import Pagination from './Pagination';
 import Toolbar from './Toolbar';
 
@@ -20,25 +20,25 @@ const DataManager = () => {
 	const [rawData, setRawData] = useState([]);
 
 	// GET RAW DATA FROM THE API
-	const fetchData = async setRawData => {
-		const res = await fetch('http://localhost:4000/projects');
+	const fetchData = async (setRawData, signal) => {
+		const res = await fetch('http://localhost:4000/projects', { signal });
 		const apiData = await res.json();
 		setRawData(apiData);
 	};
 
 	useEffect(() => {
-		fetchData(setRawData);
+		const controller = new AbortController();
+		fetchData(setRawData, controller.signal);
+		return () => controller.abort();
 	}, []);
 
-	// GET PROCESSED DATA
+	// DISPLAY DATA
 	let data = filterData(rawData, filterCriteria);
 	data = sortData(data, sortCriteria);
+	const { paginatedData, totalPages } = paginateData(data, page, itemsPerPage);
+	data = paginatedData;
 
-	const totalPages = Math.ceil(data.length / itemsPerPage);
-
-	data = paginateData(data, page, itemsPerPage);
-
-	// Prevents that the page value could be larger than the total number of pages when changing the items per page and goes always to page 1 when there are no items to display.
+	// Prevents that the page value could be larger than the total number of pages when changing the items per page.
 	useEffect(() => {
 		if (page > totalPages) return setPage(1);
 	}, [page, totalPages]);
@@ -57,7 +57,7 @@ const DataManager = () => {
 					sortCriteria={sortCriteria}
 					setSortCriteria={setSortCriteria}
 				/>
-				<ProjectsListHeader />
+				<ListHeader />
 				<List data={data} itemsPerPage={itemsPerPage} />
 				<Pagination
 					page={page}

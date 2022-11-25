@@ -1,2 +1,5 @@
-@import './resets.css';
-@import './theme.css';
+/* RESET */
+@import './reset.css';
+
+/* THEME */
+@import './themes/theme_default.css';

@@ -10,17 +10,16 @@ const BTN_USES = {
 	disabled: style.disabled
 };
 
-const Button = ({ type = 'text', use = 'secondary', ...props }) => {
+const Button = ({ type = 'text', use = 'secondary', className, ...props }) => {
 	const btnType = BTN_TYPES[type];
 	const btnUse = BTN_USES[use];
 
 	return (
 		<button
+			{...props} // includes children
 			onClick={props.onClick}
-			className={`${style.button} ${btnType} ${btnUse}`}
-		>
-			{props.children}
-		</button>
+			className={`${style.button} ${btnType} ${btnUse} ${className} || ''`}
+		></button>
 	);
 };
 

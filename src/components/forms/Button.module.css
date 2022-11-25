@@ -4,7 +4,14 @@
 	padding: 0 0.75rem;
 	border-radius: var(--radius-sm);
 	border: 1px solid var(--color-black);
-	height: 32px;
+	height: 2rem;
+}
+
+.button:disabled {
+	border-color: var(--color-light-gray);
+	background-color: var(--color-light-gray);
+	color: var(--color-gray);
+	cursor: auto;
 }
 
 .primary {
@@ -15,13 +22,7 @@
 .secondary {
 	background-color: var(--color-white);
 	color: var(--color-black);
-}
-
-.disabled {
-	border-color: var(--color-light-gray);
-	background-color: var(--color-light-gray);
-	color: var(--color-gray);
-	pointer-events: none;
+	border-color: var(--color-border);
 }
 
 .icon {

@@ -13,8 +13,8 @@ const Pagination = ({
 		<div className={style.pagination}>
 			<div className={style.itemsPerPageSelector}>
 				<Select
+					labelDisplay='none'
 					value={itemsPerPage}
-					id='itemsPerPage'
 					onChange={e => {
 						setItemsPerPage(Number(e.target.value));
 					}}

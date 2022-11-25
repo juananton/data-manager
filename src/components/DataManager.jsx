@@ -66,6 +66,7 @@ const DataManager = () => {
 					<h1 className={style.title}>Data manager</h1>
 				</div>
 			</div>
+
 			<div className={style.wrapper}>
 				<Toolbar
 					filterCriteria={filterCriteria}

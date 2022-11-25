@@ -12,17 +12,20 @@
 	max-width: 100%;
 }
 
-.formControl {
+.filterSelect {
 	margin-right: 1.5rem;
-	display: flex;
-	align-items: center;
-}
-
-.formControl Select {
-	margin-left: 0.75rem;
 }
 
 .btnPrimary {
 	background-color: var(--color-black);
 	color: var(--color-white);
+}
+
+.inline {
+	display: flex;
+	align-items: center;
+}
+
+.inline .label {
+	margin-bottom: 0;
 }

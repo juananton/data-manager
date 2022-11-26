@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { DATA_FORMS } from '../lib/constants/forms';
 import { SORT_OPTIONS } from '../lib/constants/sortOptions';
 import {
 	filterData,
@@ -13,10 +14,12 @@ import Toolbar from './Toolbar';
 
 const DataManager = () => {
 	// STATES
-	const [filterCriteria, setFilterCriteria] = useState('all');
-	const [sortCriteria, setSortCriteria] = useState(SORT_OPTIONS.DATE);
+	const { currentForm, setCurrentForm } = useForm();
+	const { filter, sort, setFilter, setSort } = useDisplayCriteria();
+
 	const [page, setPage] = useState(1);
 	const [itemsPerPage, setItemsPerPage] = useState(5);
+
 	const [rawData, setRawData] = useState([]);
 	const [error, setError] = useState(false);
 	const [loading, setLoading] = useState(true);
@@ -45,8 +48,8 @@ const DataManager = () => {
 	}, []);
 
 	// ITEMS TO DISPLAY
-	let itemsToDisplay = filterData(rawData, filterCriteria);
-	itemsToDisplay = sortData(itemsToDisplay, sortCriteria);
+	let itemsToDisplay = filterData(rawData, filter);
+	itemsToDisplay = sortData(itemsToDisplay, sort);
 	const { paginatedData, totalPages } = paginateData(
 		itemsToDisplay,
 		page,
@@ -68,12 +71,17 @@ const DataManager = () => {
 			</div>
 
 			<div className={style.wrapper}>
-				<Toolbar
-					filterCriteria={filterCriteria}
-					setFilterCriteria={setFilterCriteria}
-					sortCriteria={sortCriteria}
-					setSortCriteria={setSortCriteria}
-				/>
+				{currentForm === DATA_FORMS.FILTER ? (
+					<Toolbar
+						filter={filter}
+						setFilter={setFilter}
+						sort={sort}
+						setSort={setSort}
+						setCreateForm={setCurrentForm}
+					/>
+				) : (
+					<p>Create Form</p>
+				)}
 				<ListHeader />
 				<List
 					itemsToDisplay={itemsToDisplay}
@@ -91,6 +99,40 @@ const DataManager = () => {
 			</div>
 		</>
 	);
+};
+
+const useDisplayCriteria = () => {
+	const [displayCriteria, setDisplayCriteria] = useState({
+		filter: 'all',
+		sort: SORT_OPTIONS.DATE
+	});
+	const setFilter = newFilter =>
+		setDisplayCriteria({
+			...displayCriteria,
+			filter: newFilter
+		});
+
+	const setSort = newSort =>
+		setDisplayCriteria({ ...displayCriteria, sort: newSort });
+
+	return { ...displayCriteria, setFilter, setSort };
+};
+
+const useForm = () => {
+	const [currentForm, setCurrentForm] = useState(DATA_FORMS.FILTER);
+
+	const setFilterForm = () => setCurrentForm(DATA_FORMS.FILTER);
+	const setCreateForm = () => setCurrentForm(DATA_FORMS.CREATE);
+	const setEditForm = () => setCurrentForm(DATA_FORMS.EDIT);
+	const setDeleteForm = () => setCurrentForm(DATA_FORMS.DELETE);
+
+	return {
+		currentForm,
+		setFilterForm,
+		setCreateForm,
+		setEditForm,
+		setDeleteForm
+	};
 };
 
 export default DataManager;

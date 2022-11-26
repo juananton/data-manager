@@ -4,16 +4,22 @@ import Button from './forms/Button';
 import Select from './forms/Select';
 import style from './Toolbar.module.css';
 
-const Toolbar = ({ filter, setFilter, sort, setSort, setCurrentForm }) => {
+const Toolbar = ({
+	filterBy,
+	setFilterBy,
+	sortBy,
+	setSortBy,
+	setCurrentForm
+}) => {
 	return (
 		<div className={style.toolbar}>
 			<div className={style.filters}>
 				<Select
 					className={style.filterSelect}
-					value={filter}
+					value={filterBy}
 					labelDisplay='left'
 					label='Filter by'
-					onChange={e => setFilter(e.target.value)}
+					onChange={e => setFilterBy(e.target.value)}
 				>
 					<option value='all'>All</option>
 					{Object.values(CATEGORIES).map(category => (
@@ -24,14 +30,14 @@ const Toolbar = ({ filter, setFilter, sort, setSort, setCurrentForm }) => {
 				</Select>
 				<Select
 					className={style.filterSelect}
-					value={sort}
+					value={sortBy}
 					labelDisplay='left'
 					label='Sort by'
-					onChange={e => setSort(+e.target.value)}
+					onChange={e => setSortBy(+e.target.value)}
 				>
 					<option value={SORT_OPTIONS.DATE}>Date</option>
 					<option value={SORT_OPTIONS.NAME}>Name</option>
-					{filter === 'all' && (
+					{filterBy === 'all' && (
 						<option value={SORT_OPTIONS.CATEGORY}>Category</option>
 					)}
 				</Select>

@@ -1,7 +1,7 @@
 import { CATEGORIES } from '../lib/constants/categories';
 import { SORT_OPTIONS } from '../lib/constants/sortOptions';
-import Button from './forms/Button';
-import Select from './forms/Select';
+import Button from './atoms/Button';
+import Select from './atoms/Select';
 import style from './Toolbar.module.css';
 
 const Toolbar = ({
@@ -9,7 +9,7 @@ const Toolbar = ({
 	setFilterBy,
 	sortBy,
 	setSortBy,
-	setCurrentForm
+	setCreateForm
 }) => {
 	return (
 		<div className={style.toolbar}>
@@ -43,8 +43,8 @@ const Toolbar = ({
 				</Select>
 			</div>
 			{
-				<Button use='primary' onClick={setCurrentForm}>
-					New Item
+				<Button use='primary' onClick={setCreateForm}>
+					Create item
 				</Button>
 			}
 		</div>

@@ -1,0 +1,18 @@
+.createForm {
+	border: 1px solid var(--color-black);
+	padding: 1rem;
+	border-radius: var(--radius-md);
+}
+
+.row {
+	margin-bottom: 1rem;
+}
+
+.buttonsWrapper {
+	display: flex;
+	justify-content: end;
+}
+
+.buttonsWrapper * {
+	margin-left: 1rem;
+}

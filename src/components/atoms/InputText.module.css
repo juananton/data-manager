@@ -3,34 +3,17 @@
 	margin-bottom: 0.5rem;
 }
 
-.wrapper {
-	position: relative;
-	width: 40%;
-}
-
-.icon {
-	position: absolute;
-	width: 1rem;
-	right: 12px;
-	top: 0.5rem;
-}
-
 .input {
 	font-size: var(--text-sm);
 	padding: 0 0.75rem;
-	padding-right: 2.25rem;
 	border: 1px solid var(--color-border);
 	border-radius: var(--radius-sm);
 	height: 2rem;
 	width: 100%;
 }
 
-.errorInput {
+.error {
 	border-color: var(--color-red);
-}
-
-.successInput {
-	border-color: var(--color-green);
 }
 
 .errorText {
@@ -38,12 +21,4 @@
 	display: block;
 	margin-top: 0.5rem;
 	color: var(--color-red);
-}
-
-.errorIcon {
-	color: var(--color-red);
-}
-
-.successIcon {
-	color: var(--color-green);
 }

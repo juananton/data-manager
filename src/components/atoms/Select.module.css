@@ -30,6 +30,7 @@
 	border-radius: var(--radius-sm);
 	appearance: none;
 	height: 2rem;
+	width: 100%;
 }
 
 .icon {

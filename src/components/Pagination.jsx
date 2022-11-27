@@ -1,5 +1,5 @@
-import PageSelector from './forms/PageSelector';
-import Select from './forms/Select';
+import PageSelector from './atoms/PageSelector';
+import Select from './atoms/Select';
 import style from './Pagination.module.css';
 
 const Pagination = ({

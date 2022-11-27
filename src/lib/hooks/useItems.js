@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { filterData, paginateData, sortData } from '../functions/manageData';
+import { filterData, paginateData, sortData } from '../functions/filterData';
 
 // GET DATA FROM THE API
 const fetchData = async (setRawData, setError, setLoading, signal) => {
@@ -57,5 +57,5 @@ export const useItems = (filter, sort, page, itemsPerPage, setPage) => {
 		if (page > totalPages) return setPage(1);
 	});
 
-	return { itemsToDisplay, totalPages, error, loading };
+	return { itemsToDisplay, totalPages, error, loading, rawData };
 };

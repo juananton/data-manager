@@ -11,14 +11,14 @@ const PageSelector = ({ page, setPage, totalPages }) => {
 			</p>
 			<Button
 				onClick={() => setPage(page - 1)}
-				type='icon'
+				variant='icon'
 				disabled={page === 1}
 			>
 				<ArrowLeftIcon />
 			</Button>
 			<Button
 				onClick={() => setPage(page + 1)}
-				type='icon'
+				variant='icon'
 				disabled={page === totalPages || totalPages === 0}
 			>
 				<ArrowRightIcon />

@@ -14,7 +14,7 @@ export const useFilters = () => {
 			filterBy: newFilterBy
 		});
 
-	const setSortBy = newSortBy => setFilters({ ...filters, sort: newSortBy });
+	const setSortBy = newSortBy => setFilters({ ...filters, sortBy: newSortBy });
 
 	const setPage = newPage => setFilters({ ...filters, page: newPage });
 

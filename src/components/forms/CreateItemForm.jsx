@@ -11,75 +11,97 @@ const CreateItemForm = ({ closeForm }) => {
 	const {
 		itemName,
 		itemId,
-		itemDate,
 		itemDescription,
 		setItemName,
 		setItemId,
-		setItemDate,
 		setItemDescription
 	} = useCreateForm();
 
+	const isDisabled =
+		!itemName.value ||
+		itemName.error ||
+		itemId.error ||
+		itemId.loading ||
+		!itemDescription.value ||
+		itemDescription.error;
+
 	return (
-		<form className={style.createForm}>
-			<div className={style.row}>
-				<Input
-					type='text'
-					label='Name'
-					error={itemName.error}
-					value={itemName.value}
-					onChange={e => setItemName(e.target.value)}
-				/>
-			</div>
-			<div className={style.row}>
-				<InputAsync
-					type='text'
-					label='ID'
-					success={itemId.value && !itemId.loading && !itemId.error}
-					loading={itemId.loading}
-					error={itemId.error}
-					value={itemId.value}
-					onChange={e => setItemId(e.target.value)}
-				/>
-			</div>
-			<div className={style.row}>
-				<Select
-					className={style.selectCategory}
-					label='Category'
-					name='category'
-				>
-					{Object.values(CATEGORIES).map(category => (
-						<option key={category} value={category}>
-							{category}
-						</option>
-					))}
-				</Select>
-			</div>
-			<div className={style.row}>
-				<Input
-					type='number'
-					min='1900'
-					max='2050'
-					label='Date'
-					value={itemDate.value}
-					onChange={e => setItemDate(e.target.value)}
-				></Input>
-			</div>
-			<div className={style.row}>
-				<TextArea
-					label='Description'
-					error={itemDescription.error}
-					value={itemDescription.value}
-					onChange={e => setItemDescription(e.target.value)}
-				/>
-			</div>
-			<div className={style.buttonsWrapper}>
-				<Button onClick={closeForm}>Cancel</Button>
-				<Button type='submit' use='primary'>
-					Save changes
-				</Button>
-			</div>
-		</form>
+		<div className={style.wrapper}>
+			<form onSubmit={e => handleSubmit(e, itemId, itemName, itemDescription)}>
+				<div className={style.row}>
+					<Input
+						type='text'
+						label='Name'
+						error={itemName.error}
+						value={itemName.value}
+						onChange={e => setItemName(e.target.value)}
+					/>
+				</div>
+				<div className={style.row}>
+					<InputAsync
+						type='text'
+						label='ID'
+						success={itemId.value && !itemId.loading && !itemId.error}
+						loading={itemId.loading}
+						error={itemId.error}
+						value={itemId.value}
+						onChange={e => setItemId(e.target.value)}
+					/>
+				</div>
+				<div className={style.row}>
+					<Select
+						className={style.selectCategory}
+						label='Category'
+						name='category'
+					>
+						{Object.values(CATEGORIES).map(category => (
+							<option key={category} value={category}>
+								{category}
+							</option>
+						))}
+					</Select>
+				</div>
+				<div className={style.row}>
+					<TextArea
+						label='Description'
+						error={itemDescription.error}
+						value={itemDescription.value}
+						onChange={e => setItemDescription(e.target.value)}
+					/>
+				</div>
+				<div className={style.buttonsWrapper}>
+					<Button onClick={closeForm}>Cancel</Button>
+					<Button type='submit' use='primary' disabled={isDisabled}>
+						Save changes
+					</Button>
+				</div>
+			</form>
+		</div>
 	);
+};
+
+const handleSubmit = async (e, itemId, itemName, itemDescription) => {
+	e.preventDefault();
+
+	const item = {
+		id: itemId.value,
+		name: itemName.value,
+		category: e.target.category.value,
+		date: new Date(),
+		description: itemDescription.value
+	};
+
+	const res = await fetch('http://localhost:4000/projects', {
+		method: 'POST',
+		headers: {
+			'Content-Type': 'application/json'
+		},
+		body: JSON.stringify(item)
+	});
+
+	console.log(item);
+	if (res.ok) console.log('Item created');
+	else console.log('Error trying to create item');
 };
 
 export default CreateItemForm;

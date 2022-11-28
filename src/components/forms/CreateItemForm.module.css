@@ -1,4 +1,4 @@
-.createForm {
+.wrapper {
 	border: 1px solid var(--color-black);
 	padding: 1rem;
 	border-radius: var(--radius-md);

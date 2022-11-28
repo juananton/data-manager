@@ -26,13 +26,11 @@ const validateItemIdAvailable = async (itemId, setItemIdError, signal) => {
 };
 
 export const useCreateForm = () => {
-	const year = new Date().getFullYear();
 	const ID = Math.floor(Math.random() * 10000); // Temporary solution for async testing
 
 	const [formValues, setformValues] = useState({
 		itemName: { value: '', error: undefined },
 		itemId: { value: ID, success: true, loading: false, error: undefined },
-		itemDate: { value: year },
 		itemDescription: { value: '', error: undefined }
 	});
 
@@ -49,13 +47,6 @@ export const useCreateForm = () => {
 		setformValues({
 			...formValues,
 			itemId: { value: newItemId, loading: !error, error }
-		});
-	};
-
-	const setItemDate = newItemDate => {
-		setformValues({
-			...formValues,
-			itemDate: { value: newItemDate }
 		});
 	};
 
@@ -100,7 +91,6 @@ export const useCreateForm = () => {
 		...formValues,
 		setItemName,
 		setItemId,
-		setItemDate,
 		setItemDescription
 	};
 };

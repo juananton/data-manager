@@ -1,52 +1,60 @@
 {
 	"projects": [
 		{
-			"id": "c3ce080a-88ee-4b1c-b88e-e7070b1365e6",
+			"id": "6739",
 			"name": "Users manager",
 			"category": "Vanilla JS",
-			"date": 2022
+			"year": 2022,
+			"description": "Item description"
 		},
 		{
-			"id": "43f4fc35-387e-4cbe-a5b6-86c12acd74cb",
+			"id": "9830",
 			"name": "Test project",
 			"category": "React",
-			"date": 2022
+			"year": 2022,
+			"description": "Item description"
 		},
 		{
-			"id": "04aa6dff-b74b-4abf-bcce-1668581cb3e0",
+			"id": "1299",
 			"name": "Other JavaScript project",
 			"category": "Vanilla JS",
-			"date": 2022
+			"year": 2022,
+			"description": "Item description"
 		},
 		{
-			"id": "d4150eee-37d8-4a18-8e9d-fd9837b65fbe",
+			"id": "3402",
 			"name": "Bank accounts manager",
 			"category": "React",
-			"date": 2021
+			"year": 2021,
+			"description": "Item description"
 		},
 		{
-			"id": "dadaeca9-6ecd-4c2c-bbe8-4219cfdb97c2",
+			"id": "0038",
 			"name": "Ticket booking",
 			"category": "Node.js",
-			"date": 2021
+			"year": 2021,
+			"description": "Item description"
 		},
 		{
-			"id": "f7050dbb-14de-47bc-9655-868dfbf0d8b1",
+			"id": "4423",
 			"name": "JavaScript project",
 			"category": "Vanilla JS",
-			"date": 2021
+			"year": 2021,
+			"description": "Item description"
 		},
 		{
-			"id": "1a751902-cad9-420b-bffa-a664b2616bf7",
+			"id": "0593",
 			"name": "Feedback manager",
 			"category": "React",
-			"date": 2020
+			"year": 2020,
+			"description": "Item description"
 		},
 		{
-			"id": "50103224-4cb0-4c18-9ba7-69e588056cdf",
+			"id": "9602",
 			"name": "Node project",
 			"category": "Node.js",
-			"date": 2020
+			"year": 2020,
+			"description": "Item description"
 		}
 	]
 }

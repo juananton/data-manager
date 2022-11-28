@@ -46,3 +46,7 @@
 .successIcon {
 	color: var(--color-green);
 }
+
+.loadingIcon {
+	color: var(--color-blue);
+}

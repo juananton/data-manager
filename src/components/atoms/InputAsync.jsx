@@ -1,9 +1,9 @@
 import CheckCircleIcon from '../icons/CheckCircleIcon';
 import CrossCircleIcon from '../icons/CrossCircleIcon';
 import UpdateIcon from '../icons/UpdateIcon.jsx';
-import style from './InputTextAsync.module.css';
+import style from './InputAsync.module.css';
 
-const InputTextAsync = ({
+const InputAsync = ({
 	label,
 	loading,
 	success,
@@ -21,7 +21,6 @@ const InputTextAsync = ({
 					className={`${style.input} ${error ? style.errorInput : ''} ${
 						success ? style.successInput : ''
 					}`}
-					type='text'
 				/>
 				{icon}
 			</div>
@@ -31,7 +30,8 @@ const InputTextAsync = ({
 };
 
 const getIcon = (loading, success, error) => {
-	if (loading) return <UpdateIcon className={style.icon} />;
+	if (loading)
+		return <UpdateIcon className={`${style.icon} ${style.loadingIcon}`} />;
 
 	if (success)
 		return <CheckCircleIcon className={`${style.icon} ${style.successIcon}`} />;
@@ -40,4 +40,4 @@ const getIcon = (loading, success, error) => {
 		return <CrossCircleIcon className={`${style.icon} ${style.errorIcon}`} />;
 };
 
-export default InputTextAsync;
+export default InputAsync;

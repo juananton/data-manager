@@ -4,7 +4,7 @@ import { SORT_OPTIONS } from '../constants/sortOptions';
 export const useFilters = () => {
 	const [filters, setFilters] = useState({
 		filterBy: 'all',
-		sortBy: SORT_OPTIONS.DATE,
+		sortBy: SORT_OPTIONS.YEAR,
 		page: 1,
 		itemsPerPage: 5
 	});

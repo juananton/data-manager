@@ -1,28 +1,44 @@
-import { useState } from 'react';
 import { CATEGORIES } from '../../lib/constants/categories';
-import {
-	validateItemDescription,
-	validateItemName
-} from '../../lib/functions/itemValidations';
+import { useCreateForm } from '../../lib/hooks/useCreateForm';
 import Button from '../atoms/Button';
-import InputTextAsync from '../atoms/InputTextAsync';
+import Input from '../atoms/Input';
+import InputAsync from '../atoms/InputAsync';
 import Select from '../atoms/Select';
 import TextArea from '../atoms/TextArea';
 import style from './CreateItemForm.module.css';
 
 const CreateItemForm = ({ closeForm }) => {
-	const { itemName, itemDescription, setItemName, setItemDescription } =
-		useFormValues();
+	const {
+		itemName,
+		itemId,
+		itemDate,
+		itemDescription,
+		setItemName,
+		setItemId,
+		setItemDate,
+		setItemDescription
+	} = useCreateForm();
 
 	return (
 		<form className={style.createForm}>
 			<div className={style.row}>
-				<InputTextAsync
-					className={style.inputName}
+				<Input
+					type='text'
 					label='Name'
 					error={itemName.error}
 					value={itemName.value}
 					onChange={e => setItemName(e.target.value)}
+				/>
+			</div>
+			<div className={style.row}>
+				<InputAsync
+					type='text'
+					label='ID'
+					success={itemId.value && !itemId.loading && !itemId.error}
+					loading={itemId.loading}
+					error={itemId.error}
+					value={itemId.value}
+					onChange={e => setItemId(e.target.value)}
 				/>
 			</div>
 			<div className={style.row}>
@@ -37,6 +53,16 @@ const CreateItemForm = ({ closeForm }) => {
 						</option>
 					))}
 				</Select>
+			</div>
+			<div className={style.row}>
+				<Input
+					type='number'
+					min='1900'
+					max='2050'
+					label='Date'
+					value={itemDate.value}
+					onChange={e => setItemDate(e.target.value)}
+				></Input>
 			</div>
 			<div className={style.row}>
 				<TextArea
@@ -54,31 +80,6 @@ const CreateItemForm = ({ closeForm }) => {
 			</div>
 		</form>
 	);
-};
-
-const useFormValues = () => {
-	const [formValues, setformValues] = useState({
-		itemName: { value: '', error: undefined },
-		itemDescription: { value: '', error: undefined }
-	});
-
-	const setItemName = newItemName => {
-		const error = validateItemName(newItemName);
-		setformValues({
-			...formValues,
-			itemName: { value: newItemName, error }
-		});
-	};
-
-	const setItemDescription = newItemDescription => {
-		const error = validateItemDescription(newItemDescription);
-		setformValues({
-			...formValues,
-			itemDescription: { value: newItemDescription, error }
-		});
-	};
-
-	return { ...formValues, setItemName, setItemDescription };
 };
 
 export default CreateItemForm;

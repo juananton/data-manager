@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { CATEGORIES } from '../../lib/constants/categories';
 import { useCreateForm } from '../../lib/hooks/useCreateForm';
 import Button from '../atoms/Button';
@@ -8,6 +9,8 @@ import TextArea from '../atoms/TextArea';
 import style from './CreateItemForm.module.css';
 
 const CreateItemForm = ({ closeForm }) => {
+	const [isSubmiting, setIsSubmitting] = useState(false);
+
 	const {
 		itemName,
 		itemId,
@@ -23,11 +26,23 @@ const CreateItemForm = ({ closeForm }) => {
 		itemId.error ||
 		itemId.loading ||
 		!itemDescription.value ||
-		itemDescription.error;
+		itemDescription.error ||
+		isSubmiting;
 
 	return (
 		<div className={style.wrapper}>
-			<form onSubmit={e => handleSubmit(e, itemId, itemName, itemDescription)}>
+			<form
+				onSubmit={e =>
+					handleSubmit(
+						e,
+						itemId,
+						itemName,
+						itemDescription,
+						setIsSubmitting,
+						closeForm
+					)
+				}
+			>
 				<div className={style.row}>
 					<Input
 						type='text'
@@ -72,7 +87,7 @@ const CreateItemForm = ({ closeForm }) => {
 				<div className={style.buttonsWrapper}>
 					<Button onClick={closeForm}>Cancel</Button>
 					<Button type='submit' use='primary' disabled={isDisabled}>
-						Save changes
+						{isSubmiting ? 'Loading...' : 'Create item'}
 					</Button>
 				</div>
 			</form>
@@ -80,8 +95,17 @@ const CreateItemForm = ({ closeForm }) => {
 	);
 };
 
-const handleSubmit = async (e, itemId, itemName, itemDescription) => {
+const handleSubmit = async (
+	e,
+	itemId,
+	itemName,
+	itemDescription,
+	setIsSubmitting,
+	closeForm
+) => {
 	e.preventDefault();
+
+	setIsSubmitting(true);
 
 	const item = {
 		id: itemId.value,
@@ -99,9 +123,12 @@ const handleSubmit = async (e, itemId, itemName, itemDescription) => {
 		body: JSON.stringify(item)
 	});
 
-	console.log(item);
-	if (res.ok) console.log('Item created');
-	else console.log('Error trying to create item');
+	if (res.ok) {
+		// TODO: Update items list
+		closeForm();
+	} else {
+		setIsSubmitting(false);
+	}
 };
 
 export default CreateItemForm;

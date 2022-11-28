@@ -13,7 +13,6 @@ const ListItem = ({ name, id, category, date }) => {
 
 	const year = new Date(date).getFullYear();
 
-	console.log(date);
 	return (
 		<div className={style.listItem}>
 			<div className={style.name}>{name}</div>

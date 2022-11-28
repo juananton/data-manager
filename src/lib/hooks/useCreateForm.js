@@ -27,7 +27,6 @@ const validateItemIdAvailable = async (itemId, setItemIdError, signal) => {
 
 export const useCreateForm = () => {
 	const ID = Math.floor(Math.random() * 10000); // Temporary solution for async testing
-
 	const [formValues, setformValues] = useState({
 		itemName: { value: '', error: undefined },
 		itemId: { value: ID, success: true, loading: false, error: undefined },

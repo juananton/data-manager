@@ -35,7 +35,7 @@ const Toolbar = ({
 					label='Sort by'
 					onChange={e => setSortBy(+e.target.value)}
 				>
-					<option value={SORT_OPTIONS.YEAR}>Year</option>
+					<option value={SORT_OPTIONS.DATE}>Year</option>
 					<option value={SORT_OPTIONS.NAME}>Name</option>
 					{filterBy === 'all' && (
 						<option value={SORT_OPTIONS.CATEGORY}>Category</option>

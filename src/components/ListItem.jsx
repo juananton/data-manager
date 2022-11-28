@@ -2,7 +2,7 @@ import { CATEGORIES } from '../lib/constants/categories';
 import style from './ListItem.module.css';
 import Tag from './Tag';
 
-const ListItem = ({ name, id, category, year }) => {
+const ListItem = ({ name, id, category, date }) => {
 	const CATEGORY_STYLES = {
 		[CATEGORIES.REACT]: style.react,
 		[CATEGORIES.JS]: style.javascript,
@@ -11,6 +11,9 @@ const ListItem = ({ name, id, category, year }) => {
 
 	const categoryClassName = CATEGORY_STYLES[category];
 
+	const year = new Date(date).getFullYear();
+
+	console.log(date);
 	return (
 		<div className={style.listItem}>
 			<div className={style.name}>{name}</div>

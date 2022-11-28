@@ -5,7 +5,7 @@ import {
 	validateItemName
 } from '../functions/itemValidations';
 
-const validateItemIdAsync = async (itemId, setItemIdError, signal) => {
+const validateItemIdAvailable = async (itemId, setItemIdError, signal) => {
 	let error;
 	try {
 		const res = await fetch(`http://localhost:4000/projects?id=${itemId}`, {
@@ -18,6 +18,7 @@ const validateItemIdAsync = async (itemId, setItemIdError, signal) => {
 			error = 'Validation error';
 		}
 	} catch (err) {
+		if (err.name === 'AbortError') return;
 		error = 'Validation error';
 	}
 
@@ -79,12 +80,19 @@ export const useCreateForm = () => {
 	useEffect(() => {
 		if (formValues.itemId.loading) {
 			const controller = new AbortController();
-			validateItemIdAsync(
-				formValues.itemId.value,
-				setItemIdError,
-				controller.signal
+			const timeoutId = setTimeout(
+				() =>
+					validateItemIdAvailable(
+						formValues.itemId.value,
+						setItemIdError,
+						controller.signal
+					),
+				500
 			);
-			return () => controller.abort;
+			return () => {
+				controller.abort();
+				clearTimeout(timeoutId);
+			};
 		}
 	}, [formValues.itemId.loading, formValues.itemId.value]);
 

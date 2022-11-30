@@ -1,26 +1,18 @@
 import { useEffect, useState } from 'react';
+import { getData } from '../api/dataApi';
 import { filterData, paginateData, sortData } from '../functions/filterData';
 
-// GET DATA FROM THE API
-const fetchData = async (setRawData, setError, setLoading, signal) => {
-	try {
-		const res = await fetch('http://localhost:4000/projects', { signal });
-		if (res.ok) {
-			const data = await res.json();
-			setRawData(data);
-		} else {
-			setError(true);
-		}
-	} catch (err) {
-		setError(true);
-	} finally {
-		setLoading(false);
-	}
+// GET ALL DATA FROM THE API
+const loadData = async (setAllItems, setError, signal) => {
+	const { data, aborted } = await getData(signal);
+	if (aborted) return;
+	if (data) setAllItems(data);
+	else setError();
 };
 
 // GET ITEMS TO DISPLAY
-const getItemsToDisplay = (rawData, filter, sort, page, itemsPerPage) => {
-	let itemsToDisplay = filterData(rawData, filter);
+const getItemsToDisplay = (allItems, filter, sort, page, itemsPerPage) => {
+	let itemsToDisplay = filterData(allItems, filter);
 	itemsToDisplay = sortData(itemsToDisplay, sort);
 	const { paginatedData, totalPages } = paginateData(
 		itemsToDisplay,
@@ -34,18 +26,34 @@ const getItemsToDisplay = (rawData, filter, sort, page, itemsPerPage) => {
 
 //  DISPLAY ITEMS
 export const useItems = (filter, sort, page, itemsPerPage, setPage) => {
-	const [rawData, setRawData] = useState([]);
-	const [error, setError] = useState(false);
-	const [loading, setLoading] = useState(true);
+	const [items, setItems] = useState({
+		allItems: [],
+		error: false,
+		loading: true
+	});
+
+	const setAllItems = newAllItems =>
+		setItems({
+			allItems: newAllItems,
+			loading: false,
+			error: false
+		});
+
+	const setError = () =>
+		setItems({
+			allItems: [],
+			loading: false,
+			error: true
+		});
 
 	useEffect(() => {
 		const controller = new AbortController();
-		fetchData(setRawData, setError, setLoading, controller.signal);
+		loadData(setAllItems, setError, controller.signal);
 		return () => controller.abort();
 	}, []);
 
 	const { itemsToDisplay, totalPages } = getItemsToDisplay(
-		rawData,
+		items.allItems,
 		filter,
 		sort,
 		page,
@@ -57,5 +65,10 @@ export const useItems = (filter, sort, page, itemsPerPage, setPage) => {
 		if (page > totalPages) return setPage(1);
 	});
 
-	return { itemsToDisplay, totalPages, error, loading, rawData };
+	return {
+		itemsToDisplay,
+		totalPages,
+		error: items.error,
+		loading: items.loading
+	};
 };

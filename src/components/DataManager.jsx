@@ -1,16 +1,12 @@
-import { FORMS } from '../lib/constants/forms';
 import { useFilters } from '../lib/hooks/useFilters';
-import { useForms } from '../lib/hooks/useForms';
 import { useItems } from '../lib/hooks/useItems';
 import style from './DataManager.module.css';
-import CreateItemForm from './forms/CreateItemForm';
 import List from './List';
 import ListHeader from './ListHeader';
 import Pagination from './Pagination';
 import Toolbar from './Toolbar';
 
 const DataManager = () => {
-	const { currentForm, setCreateForm, setFiltersForm } = useForms();
 	const {
 		filterBy,
 		sortBy,
@@ -39,17 +35,13 @@ const DataManager = () => {
 			</div>
 
 			<div className={style.wrapper}>
-				{currentForm === FORMS.FILTER ? (
-					<Toolbar
-						filterBy={filterBy}
-						setFilterBy={setFilterBy}
-						sortBy={sortBy}
-						setSortBy={setSortBy}
-						setCreateForm={setCreateForm}
-					/>
-				) : (
-					<CreateItemForm closeForm={setFiltersForm} />
-				)}
+				<Toolbar
+					filterBy={filterBy}
+					setFilterBy={setFilterBy}
+					sortBy={sortBy}
+					setSortBy={setSortBy}
+				/>
+
 				<ListHeader />
 				<List
 					itemsToDisplay={itemsToDisplay}

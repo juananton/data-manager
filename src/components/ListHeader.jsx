@@ -6,7 +6,7 @@ const ListHeader = () => {
 			<div className={style.name}>Name</div>
 			<div className={style.id}>ID</div>
 			<div className={style.category}>Category</div>
-			<div className={style.year}>Year</div>
+			<div className={style.date}>Date</div>
 		</div>
 	);
 };

@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { CATEGORIES } from '../lib/constants/categories';
 import { SORT_OPTIONS } from '../lib/constants/sortOptions';
 import Button from './atoms/Button';
@@ -35,18 +36,14 @@ const Toolbar = ({
 					label='Sort by'
 					onChange={e => setSortBy(+e.target.value)}
 				>
-					<option value={SORT_OPTIONS.DATE}>Year</option>
+					<option value={SORT_OPTIONS.DATE}>Date</option>
 					<option value={SORT_OPTIONS.NAME}>Name</option>
 					{filterBy === 'all' && (
 						<option value={SORT_OPTIONS.CATEGORY}>Category</option>
 					)}
 				</Select>
 			</div>
-			{
-				<Button use='primary' onClick={setCreateForm}>
-					Create item
-				</Button>
-			}
+			<Link to='/createitem'>{<Button use='primary'>Create item</Button>}</Link>
 		</div>
 	);
 };

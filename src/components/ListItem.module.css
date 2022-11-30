@@ -6,7 +6,7 @@
 }
 
 .name {
-	width: 45%;
+	width: 40%;
 }
 
 .id {
@@ -14,21 +14,21 @@
 }
 
 .category {
-	width: 20%;
+	width: 22.5%;
 }
 
-.year {
+.date {
 	width: 15%;
 }
 
-.react {
+.cat1 {
 	background-color: var(--color-light-blue);
 }
 
-.javascript {
+.cat2 {
 	background-color: var(--color-light-orange);
 }
 
-.node {
+.cat3 {
 	background-color: var(--color-light-green);
 }

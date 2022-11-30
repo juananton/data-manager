@@ -4,9 +4,9 @@ import Tag from './Tag';
 
 const ListItem = ({ name, id, category, date }) => {
 	const CATEGORY_STYLES = {
-		[CATEGORIES.REACT]: style.react,
-		[CATEGORIES.JS]: style.javascript,
-		[CATEGORIES.NODE]: style.node
+		[CATEGORIES.CAT1]: style.cat1,
+		[CATEGORIES.CAT2]: style.cat2,
+		[CATEGORIES.CAT3]: style.cat3
 	};
 
 	const categoryClassName = CATEGORY_STYLES[category];
@@ -20,7 +20,7 @@ const ListItem = ({ name, id, category, date }) => {
 			<div className={style.category}>
 				<Tag className={categoryClassName}>{category}</Tag>
 			</div>
-			<div className={style.year}>{year}</div>
+			<div className={style.date}>{year}</div>
 		</div>
 	);
 };

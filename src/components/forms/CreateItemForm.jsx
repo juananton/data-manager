@@ -1,4 +1,6 @@
 import { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { createItem } from '../../lib/api/dataApi';
 import { CATEGORIES } from '../../lib/constants/categories';
 import { useCreateForm } from '../../lib/hooks/useCreateForm';
 import Button from '../atoms/Button';
@@ -8,8 +10,9 @@ import Select from '../atoms/Select';
 import TextArea from '../atoms/TextArea';
 import style from './CreateItemForm.module.css';
 
-const CreateItemForm = ({ closeForm }) => {
+const CreateItemForm = () => {
 	const [isSubmiting, setIsSubmitting] = useState(false);
+	const navigate = useNavigate();
 
 	const {
 		itemName,
@@ -30,68 +33,75 @@ const CreateItemForm = ({ closeForm }) => {
 		isSubmiting;
 
 	return (
-		<div className={style.wrapper}>
-			<form
-				onSubmit={e =>
-					handleSubmit(
-						e,
-						itemId,
-						itemName,
-						itemDescription,
-						setIsSubmitting,
-						closeForm
-					)
-				}
-			>
-				<div className={style.row}>
-					<Input
-						type='text'
-						label='Name'
-						error={itemName.error}
-						value={itemName.value}
-						onChange={e => setItemName(e.target.value)}
-					/>
+		<>
+			<div className={style.pageHeader}>
+				<div className={style.wrapper}>
+					<h1 className={style.title}>Create Item</h1>
 				</div>
-				<div className={style.row}>
-					<InputAsync
-						type='text'
-						label='ID'
-						success={itemId.value && !itemId.loading && !itemId.error}
-						loading={itemId.loading}
-						error={itemId.error}
-						value={itemId.value}
-						onChange={e => setItemId(e.target.value)}
-					/>
-				</div>
-				<div className={style.row}>
-					<Select
-						className={style.selectCategory}
-						label='Category'
-						name='category'
-					>
-						{Object.values(CATEGORIES).map(category => (
-							<option key={category} value={category}>
-								{category}
-							</option>
-						))}
-					</Select>
-				</div>
-				<div className={style.row}>
-					<TextArea
-						label='Description'
-						error={itemDescription.error}
-						value={itemDescription.value}
-						onChange={e => setItemDescription(e.target.value)}
-					/>
-				</div>
-				<div className={style.buttonsWrapper}>
-					<Button onClick={closeForm}>Cancel</Button>
-					<Button type='submit' use='primary' disabled={isDisabled}>
-						{isSubmiting ? 'Loading...' : 'Create item'}
-					</Button>
-				</div>
-			</form>
-		</div>
+			</div>
+			<div className={style.wrapper}>
+				<form
+					onSubmit={e =>
+						handleSubmit(
+							e,
+							itemId,
+							itemName,
+							itemDescription,
+							setIsSubmitting,
+							navigate
+						)
+					}
+				>
+					<div className={style.row}>
+						<Input
+							type='text'
+							label='Name'
+							error={itemName.error}
+							value={itemName.value}
+							onChange={e => setItemName(e.target.value)}
+						/>
+					</div>
+					<div className={style.row}>
+						<InputAsync
+							type='text'
+							label='ID'
+							success={itemId.value && !itemId.loading && !itemId.error}
+							loading={itemId.loading}
+							error={itemId.error}
+							value={itemId.value}
+							onChange={e => setItemId(e.target.value)}
+						/>
+					</div>
+					<div className={style.row}>
+						<Select
+							className={style.selectCategory}
+							label='Category'
+							name='category'
+						>
+							{Object.values(CATEGORIES).map(category => (
+								<option key={category} value={category}>
+									{category}
+								</option>
+							))}
+						</Select>
+					</div>
+					<div className={style.row}>
+						<TextArea
+							label='Description'
+							error={itemDescription.error}
+							value={itemDescription.value}
+							onChange={e => setItemDescription(e.target.value)}
+						/>
+					</div>
+					<div className={style.buttonsWrapper}>
+						<Link to='/'>{<Button>Cancel</Button>}</Link>
+						<Button type='submit' use='primary' disabled={isDisabled}>
+							{isSubmiting ? 'Loading...' : 'Save'}
+						</Button>
+					</div>
+				</form>
+			</div>
+		</>
 	);
 };
 
@@ -101,7 +111,7 @@ const handleSubmit = async (
 	itemName,
 	itemDescription,
 	setIsSubmitting,
-	closeForm
+	navigate
 ) => {
 	e.preventDefault();
 
@@ -115,17 +125,11 @@ const handleSubmit = async (
 		description: itemDescription.value
 	};
 
-	const res = await fetch('http://localhost:4000/projects', {
-		method: 'POST',
-		headers: {
-			'Content-Type': 'application/json'
-		},
-		body: JSON.stringify(item)
-	});
+	const success = await createItem(item);
 
-	if (res.ok) {
+	if (success) {
 		// TODO: Update items list
-		closeForm();
+		navigate('/');
 	} else {
 		setIsSubmitting(false);
 	}

@@ -1,3 +1,8 @@
+import {
+	filterData,
+	paginateData,
+	sortData
+} from '../lib/functions/filterData';
 import { useFilters } from '../lib/hooks/useFilters';
 import { useItems } from '../lib/hooks/useItems';
 import style from './DataManager.module.css';
@@ -7,24 +12,12 @@ import Pagination from './Pagination';
 import Toolbar from './Toolbar';
 
 const DataManager = () => {
-	const {
-		filterBy,
-		sortBy,
-		page,
-		itemsPerPage,
-		setFilterBy,
-		setSortBy,
-		setPage,
-		setItemsPerPage
-	} = useFilters();
+	const { filters, setFilterBy, setSortBy, setPage, setItemsPerPage } =
+		useFilters();
 
-	const { itemsToDisplay, totalPages, error, loading } = useItems(
-		filterBy,
-		sortBy,
-		page,
-		itemsPerPage,
-		setPage
-	);
+	const { items, error, loading } = useItems();
+
+	const { itemsToDisplay, totalPages } = getItemsToDisplay(items, filters);
 
 	return (
 		<>
@@ -36,22 +29,22 @@ const DataManager = () => {
 
 			<div className={style.wrapper}>
 				<Toolbar
-					filterBy={filterBy}
+					filterBy={filters.filterBy}
 					setFilterBy={setFilterBy}
-					sortBy={sortBy}
+					sortBy={filters.sortBy}
 					setSortBy={setSortBy}
 				/>
 
 				<ListHeader />
 				<List
 					itemsToDisplay={itemsToDisplay}
-					itemsPerPage={itemsPerPage}
+					itemsPerPage={filters.itemsPerPage}
 					error={error}
 					loading={loading}
 				/>
 				<Pagination
-					page={page}
-					itemsPerPage={itemsPerPage}
+					page={filters.page}
+					itemsPerPage={filters.itemsPerPage}
 					setPage={setPage}
 					setItemsPerPage={setItemsPerPage}
 					totalPages={totalPages}
@@ -59,6 +52,20 @@ const DataManager = () => {
 			</div>
 		</>
 	);
+};
+
+// GET ITEMS TO DISPLAY
+const getItemsToDisplay = (items, { filterBy, sortBy, page, itemsPerPage }) => {
+	let itemsToDisplay = filterData(items, filterBy);
+	itemsToDisplay = sortData(itemsToDisplay, sortBy);
+	const { paginatedData, totalPages } = paginateData(
+		itemsToDisplay,
+		page,
+		itemsPerPage
+	);
+	itemsToDisplay = paginatedData;
+
+	return { itemsToDisplay, totalPages };
 };
 
 export default DataManager;

@@ -5,13 +5,7 @@ import Button from './atoms/Button';
 import Select from './atoms/Select';
 import style from './Toolbar.module.css';
 
-const Toolbar = ({
-	filterBy,
-	setFilterBy,
-	sortBy,
-	setSortBy,
-	setCreateForm
-}) => {
+const Toolbar = ({ filterBy, setFilterBy, sortBy, setSortBy }) => {
 	return (
 		<div className={style.toolbar}>
 			<div className={style.filters}>

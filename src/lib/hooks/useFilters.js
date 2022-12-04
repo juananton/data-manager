@@ -11,15 +11,35 @@ export const useFilters = () => {
 	const setFilterBy = newFilterBy =>
 		setFilters({
 			...filters,
-			filterBy: newFilterBy
+			filterBy: newFilterBy,
+			page: 1
 		});
 
-	const setSortBy = newSortBy => setFilters({ ...filters, sortBy: newSortBy });
+	const setSortBy = newSortBy =>
+		setFilters({
+			...filters,
+			sortBy: newSortBy,
+			page: 1
+		});
 
-	const setPage = newPage => setFilters({ ...filters, page: newPage });
+	const setPage = newPage =>
+		setFilters({
+			...filters,
+			page: newPage
+		});
 
 	const setItemsPerPage = newItemsPerPage =>
-		setFilters({ ...filters, itemsPerPage: newItemsPerPage });
+		setFilters({
+			...filters,
+			itemsPerPage: newItemsPerPage,
+			page: 1
+		});
 
-	return { ...filters, setFilterBy, setSortBy, setPage, setItemsPerPage };
+	return {
+		filters,
+		setFilterBy,
+		setSortBy,
+		setPage,
+		setItemsPerPage
+	};
 };

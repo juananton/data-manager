@@ -34,6 +34,13 @@
       "category": "Category 1",
       "date": "2022-11-30T08:38:38.429Z",
       "description": "rqwrqwr"
+    },
+    {
+      "id": 4782,
+      "name": "Item test",
+      "category": "Category 3",
+      "date": "2022-12-04T20:08:50.553Z",
+      "description": "Test"
     }
   ]
 }
